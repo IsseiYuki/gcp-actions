@@ -9,21 +9,23 @@ async function run() {
   try {
     const jobsPath = core.getInput('jobs_path');
     const groupPrefix = core.getInput('group_prefix');
-    const projectId = core.getInput('project_id');
     const locationId = core.getInput('location_id');
-    const accountEmail = core.getInput('service_account_email');
-    const accountKey = core.getInput('service_account_key');
+    const credsJson = process.env['CREDENTIALS'];
+    if (!credsJson) {
+      throw new Error('The $CREDENTIALS environment variable was not found!');
+    }
+    const creds = JSON.parse(credsJson);
 
     const json = fs.readFileSync(jobsPath, 'utf8');
     const jobs = JSON.parse(json);
 
     const client = new scheduler.CloudSchedulerClient({
       credentials: {
-        client_email: accountEmail,
-        private_key: accountKey.replace(/\\n/g, '\n'),
+        client_email: creds.client_email,
+        private_key: creds.private_key,
       },
     });
-    const parent = client.locationPath(projectId, locationId);
+    const parent = client.locationPath(creds.project_id, locationId);
 
     const currentJobs = [];
     await client.listJobs({parent: parent})
