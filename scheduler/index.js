@@ -11,7 +11,11 @@ async function run() {
     const groupPrefix = core.getInput('group_prefix');
     const projectId = core.getInput('project_id');
     const locationId = core.getInput('location_id');
-    const creds = JSON.parse(core.getInput('credentials'));
+    const json = process.env['CREDENTIALS'];
+    if (!json) {
+      throw new Error('The $CREDENTIALS environment variable was not found!');
+    }
+    const creds = JSON.parse(json);
 
     const json = fs.readFileSync(jobsPath, 'utf8');
     const jobs = JSON.parse(json);
