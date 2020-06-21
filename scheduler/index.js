@@ -11,16 +11,15 @@ async function run() {
     const groupPrefix = core.getInput('group_prefix');
     const projectId = core.getInput('project_id');
     const locationId = core.getInput('location_id');
-    const accountEmail = core.getInput('service_account_email');
-    const accountKey = core.getInput('service_account_key');
+    const creds = JSON.parse(core.getInput('credentials'));
 
     const json = fs.readFileSync(jobsPath, 'utf8');
     const jobs = JSON.parse(json);
 
     const client = new scheduler.CloudSchedulerClient({
       credentials: {
-        client_email: accountEmail,
-        private_key: accountKey.replace(/\\n/g, '\n'),
+        client_email: creds.client_email,
+        private_key: creds.private_key,
       },
     });
     const parent = client.locationPath(projectId, locationId);

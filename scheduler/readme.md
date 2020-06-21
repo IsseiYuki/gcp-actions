@@ -20,13 +20,9 @@ Group prefix to use for targeting jobs.
 
 **Required** ID of the location. see: https://cloud.google.com/about/locations/
 
-### `service_account_email`
+### `credentials`
 
-**Required** Service account email address to use for authentication.
-
-### `service_account_key`
-
-**Required** Service account key to use for authentication.
+**Required** Credentials to use for authentication.
 
 ## Example usage
 
@@ -36,6 +32,5 @@ uses: IsseiYuki/gcp-actions/scheduler@master
     jobs_path: 'cloud/jobs.json'
     project_id: 'YOUR-PROJECT-ID'
     location_id: 'YOUR-LOCATION-ID'
-    service_account_email: ${{ secrets.GCP_SA_EMAIL }}
-    service_account_key: ${{ secrets.GCP_SA_KEY }}
+    credentials: ${{ secrets.GCP_CREDENTIALS }}
 ```
