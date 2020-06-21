@@ -1,0 +1,25 @@
+name: 'GCP Cloud Scheduler: Deploy'
+description: 'This action helps you in deploying your jobs to GCP Cloud Scheduler.'
+inputs:
+  jobs_path:
+    description: 'Configuration file path of jobs'
+    required: true
+  group_prefix:
+    description: 'Group prefix to use for targeting jobs'
+    required: false
+    default: ''
+  project_id:
+    description: 'ID of the project'
+    required: true
+  location_id:
+    description: 'ID of the location. see: https://cloud.google.com/about/locations/'
+    required: true
+  service_account_email:
+    description: 'Service account email address to use for authentication.'
+    required: true
+  service_account_key:
+    description: 'Service account key to use for authentication.'
+    required: true
+runs:
+  using: 'node12'
+  main: 'index.js'
