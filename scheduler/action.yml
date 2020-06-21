@@ -8,9 +8,6 @@ inputs:
     description: 'Group prefix to use for targeting jobs'
     required: false
     default: ''
-  project_id:
-    description: 'ID of the project'
-    required: true
   location_id:
     description: 'ID of the location. see: https://cloud.google.com/about/locations/'
     required: true

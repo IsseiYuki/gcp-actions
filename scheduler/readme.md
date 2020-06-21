@@ -2,6 +2,12 @@
 
 This action helps you in deploying your jobs to Cloud Scheduler.
 
+## Configuration
+
+Key | Value | Required | Default
+:--: | :-- | :--: | :--: | :--:
+`CREDENTIALS` | Your JSON GCP service account key. | **Yes** | N/A
+
 ## Inputs
 
 ### `jobs_path`
@@ -11,10 +17,6 @@ This action helps you in deploying your jobs to Cloud Scheduler.
 ### `group_prefix`
 
 Group prefix to use for targeting jobs.
-
-### `project_id`
-
-**Required** ID of the project.
 
 ### `location_id`
 
@@ -32,5 +34,6 @@ uses: IsseiYuki/gcp-actions/scheduler@master
     jobs_path: 'cloud/jobs.json'
     project_id: 'YOUR-PROJECT-ID'
     location_id: 'YOUR-LOCATION-ID'
-    credentials: ${{ secrets.GCP_CREDENTIALS }}
+  env:
+    CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
 ```

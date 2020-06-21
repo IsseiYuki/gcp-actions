@@ -9,7 +9,6 @@ async function run() {
   try {
     const jobsPath = core.getInput('jobs_path');
     const groupPrefix = core.getInput('group_prefix');
-    const projectId = core.getInput('project_id');
     const locationId = core.getInput('location_id');
     const credsJson = process.env['CREDENTIALS'];
     if (!credsJson) {
@@ -26,7 +25,7 @@ async function run() {
         private_key: creds.private_key,
       },
     });
-    const parent = client.locationPath(projectId, locationId);
+    const parent = client.locationPath(creds.project_id, locationId);
 
     const currentJobs = [];
     await client.listJobs({parent: parent})
