@@ -5,7 +5,7 @@ This action helps you in deploying your jobs to Cloud Scheduler.
 ## Configuration
 
 Key | Value | Required | Default
-:--: | :-- | :--: | :--: | :--:
+:--: | :-- | :--: | :--:
 `CREDENTIALS` | Your JSON GCP service account key. | **Yes** | N/A
 
 ## Inputs
